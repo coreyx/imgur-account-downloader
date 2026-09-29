@@ -1,0 +1,108 @@
+# =============================================================================
+# Imgur Account Downloader & Organizer - Configuration
+# =============================================================================
+# Copy this file to 'config.yml' and fill in your values.
+# 'config.yml' is ignored by .gitignore to prevent leaking secrets.
+
+# -----------------------------------------------------------------------------
+# Authentication
+# -----------------------------------------------------------------------------
+# Imgur access token or browser session token:
+# Obtain from browser: Log into imgur.com -> F12 (DevTools) -> Application -> Cookies -> 'accesstoken'
+token: ""
+
+# Alternatively, paste your full cookie string or accesstoken cookie value:
+# cookie: "accesstoken=YOUR_COOKIE_VALUE"
+
+# Path to an exported Netscape-format cookies.txt file (optional):
+# cookies_file: "cookies.txt"
+
+# Custom Imgur API Client ID (optional, defaults to official Imgur web client ID):
+# client_id: "546c25a59c58ad7"
+
+# -----------------------------------------------------------------------------
+# Local Archive / ZIP Backup Configuration
+# -----------------------------------------------------------------------------
+# Path to your local Imgur account images backup (.zip file or extracted directory).
+# Every user's backup archive has a unique filename and location, for example:
+# "imgur_account_backup.zip"
+#
+# Supports:
+#   - Absolute path (Windows): "C:/Users/username/Downloads/my_backup.zip"
+#   - Absolute path (POSIX):   "/home/username/Downloads/my_backup.zip"
+#   - Home shortcut:           "~/Downloads/my_backup.zip"
+#   - Relative path/filename:  "./my_backup.zip" or "my_backup.zip"
+#   - Extracted folder:        "C:/Users/username/Downloads/extracted_backup"
+#
+# If left empty ("") or commented out, the tool automatically searches for any
+# Imgur zip archive in the current directory, followed by your system Downloads folder:
+local_archive: ""
+
+# Output directory for organized albums (default: imgur_archive):
+output_dir: "imgur_archive"
+
+# Path to cache retrieved album metadata to avoid redundant API calls:
+cache_file: "imgur_metadata_cache.json"
+
+# -----------------------------------------------------------------------------
+# Album Selection (Optional)
+# -----------------------------------------------------------------------------
+# If you want to download/organize specific albums instead of your whole account,
+# list their IDs or URLs here or point to a text file:
+# albums:
+#   - "https://imgur.com/a/abc1234"
+#   - "xyz9876"
+# albums_file: "albums.txt"
+
+# -----------------------------------------------------------------------------
+# Metadata & Output Options
+# -----------------------------------------------------------------------------
+# Losslessly embed Title, Description, Upload Date into JPEGs (default: true):
+embed_exif: true
+
+# Set file creation/modification timestamps to the original Imgur upload date (default: true):
+set_timestamps: true
+
+# Generate individual .json sidecars for every image (default: false):
+sidecar_json: false
+
+# Preserve original dump filenames (e.g. '1 - TzIN9Qm.png') instead of ordering by album (default: false):
+preserve_filenames: false
+
+# Folder naming template for albums: {title}, {id}, {date}
+folder_template: "{title} [{id}]"
+
+# -----------------------------------------------------------------------------
+# Curated Output & Album Filtering
+# -----------------------------------------------------------------------------
+# Albums to ignore/skip during organization (by title, ID, or wildcard pattern):
+# ignore_albums:
+#   - "Memes"
+#   - "Screenshots*"
+#   - "7XyZ123"
+
+# Alternatively, point to a text file with ignored album IDs/titles (one per line):
+# ignore_albums_file: "ignored_albums.txt"
+
+# Exclude images of ignored albums from both album folders and the catch-all album (default: true).
+# If set to false, images from ignored albums will fall into the catch-all album instead:
+exclude_ignored_images: true
+
+# -----------------------------------------------------------------------------
+# Non-Album Media Handling & Catch-All Album
+# -----------------------------------------------------------------------------
+# Leave out / omit images that are not part of any album (default: false).
+# When set to true, non-album images are completely omitted (no catch-all folder,
+# no extraction of uncategorized media, and not listed in catalog.html):
+leave_out_non_album_images: false
+
+# Create a dedicated first-class album for media not associated with any album (default: true).
+# (Ignored if leave_out_non_album_images is true):
+enable_catch_all: true
+
+# Display title for the catch-all album (shown in galleries and catalogs):
+catch_all_title: "Non-Album Images"
+
+# Output folder name for the catch-all album:
+catch_all_folder: "Non-Album Images [_uncategorized]"
+
